@@ -6,19 +6,30 @@
 /*   By: mbifenzi <mbifenzi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/14 19:12:57 by mbifenzi          #+#    #+#             */
-/*   Updated: 2021/11/14 19:25:04 by mbifenzi         ###   ########.fr       */
+/*   Updated: 2021/12/03 16:20:09 by mbifenzi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-int		ft_isdigit(int c)
+int		ft_isdigit(char **argv)
 {
-	if (c >= '0' && c <= '9')
+	int i;
+	int j;
+
+	i = 0;
+	while (argv[i])
 	{
-		return (1);
+		j = 0;
+		while (argv[i][j])
+		{
+			if (argv[i][j] < '0' || argv[i][j] > '9')
+				return(0);
+			j++;
+		}
+		i++;
 	}
-	return (0);
+	return (1);
 }
 
 long    ft_atoi(const char *str)

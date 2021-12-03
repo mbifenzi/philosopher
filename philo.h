@@ -6,7 +6,7 @@
 /*   By: mbifenzi <mbifenzi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/14 18:13:02 by mbifenzi          #+#    #+#             */
-/*   Updated: 2021/11/14 19:23:01 by mbifenzi         ###   ########.fr       */
+/*   Updated: 2021/12/03 16:18:24 by mbifenzi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,10 +27,17 @@ typedef struct s_data
 				int eat;
 				int sleep;
 				int meals;
+				int forks;
 }				t_data;
+typedef struct s_thread
+{
+	int philos;
+	
+	
+}	t_thread;
 /*libft*/
 long	ft_atoi(const char *str);
 size_t	ft_strlen(const char *s);
-int		ft_isdigit(int c);
-
+int		ft_isdigit(char **argv);
+int		error(char *error);
 #endif

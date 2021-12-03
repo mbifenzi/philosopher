@@ -6,7 +6,7 @@
 /*   By: mbifenzi <mbifenzi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/14 18:12:34 by mbifenzi          #+#    #+#             */
-/*   Updated: 2021/12/03 13:25:40 by mbifenzi         ###   ########.fr       */
+/*   Updated: 2021/12/03 16:23:17 by mbifenzi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,9 @@ int	error(char *error)
 int	ft_protection(t_data *args, int argc, char **argv)
 {
     if (argc != 5 && argc != 6)
-        return (error("INVALID ARGUMENTS\n"));
+		return (error("INVALID ARGUMENTS\n"));
+	if (!ft_isdigit(argv))
+		return(error("not a digit\n"));
 	args->philos = ft_atoi(argv[1]);
 	args->die = ft_atoi(argv[2]);
 	args->eat = ft_atoi(argv[3]);
@@ -36,12 +38,23 @@ int	ft_protection(t_data *args, int argc, char **argv)
 	return(1);
 }
 
+// void	init_all(t_thread *threads, t_data *args)
+// {
+// 	int i;
+
+// 	i = 0;
+// 	while (i < args->)
+// }
+
 int main(int argc, char **argv)
 {
 	t_data *args;
-	args = malloc(sizeof(t_data));
+	// t_thread *threads;
+
+	args = malloc(sizeof(t_data) * (ft_atoi(argv[1])));
 	if (!ft_protection(args, argc, argv))
 		exit (0);
+	// init_all(threads, args);
 	
 	
 
