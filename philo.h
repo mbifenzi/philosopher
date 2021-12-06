@@ -6,7 +6,7 @@
 /*   By: mbifenzi <mbifenzi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/14 18:13:02 by mbifenzi          #+#    #+#             */
-/*   Updated: 2021/12/03 16:18:24 by mbifenzi         ###   ########.fr       */
+/*   Updated: 2021/12/06 17:02:44 by mbifenzi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,23 +18,25 @@
 #include <stdlib.h>
 #include <string.h>
 #include <unistd.h>
+#include <pthread.h>
 
-
-typedef struct s_data
+typedef struct s_args
 {
 				int philos;
 				int die;
 				int eat;
 				int sleep;
 				int meals;
-				int forks;
-}				t_data;
-typedef struct s_thread
+}				t_args;
+
+typedef struct	s_philos
 {
-	int philos;
+	pthread_mutex_t	*forks;
+	pthread_mutex_t	*eat;
+	pthread_mutex_t	*write;
+	int				id;
 	
-	
-}	t_thread;
+}	t_philos;
 /*libft*/
 long	ft_atoi(const char *str);
 size_t	ft_strlen(const char *s);

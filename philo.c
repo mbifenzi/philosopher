@@ -6,7 +6,7 @@
 /*   By: mbifenzi <mbifenzi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/14 18:12:34 by mbifenzi          #+#    #+#             */
-/*   Updated: 2021/12/03 16:23:17 by mbifenzi         ###   ########.fr       */
+/*   Updated: 2021/12/06 16:38:06 by mbifenzi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,31 +30,37 @@ int	ft_protection(t_data *args, int argc, char **argv)
 	if ( args->philos < 0 || args->die < 0 || args->eat < 0 || args->sleep < 0)
 		return (error("negative something\n"));
 	if (argc == 6)
-	{		
+	{
 		args->meals = ft_atoi(argv[5]);
 		if (args->meals <= 0)
 			return (error("negative something\n"));
-	}		
-	return(1);
+	}
+	return (1);
 }
 
-// void	init_all(t_thread *threads, t_data *args)
-// {
-// 	int i;
-
-// 	i = 0;
-// 	while (i < args->)
-// }
+void	init_mutexs(pthread_mutex_t *philo, t_args *args)
+{
+	int i;
+	i = 0;
+	
+	while (i < args->philos)
+	{
+		pthread_mutex_init(philo->forks[i]);
+		i++;
+	}
+	pthread_mutex_init(&philo->write, NULL);
+	pthread_mutex_init(&philo->eat, NULL);
+}
 
 int main(int argc, char **argv)
 {
-	t_data *args;
-	// t_thread *threads;
+	t_args		*args;
+	t_philos	*philo;
 
 	args = malloc(sizeof(t_data) * (ft_atoi(argv[1])));
 	if (!ft_protection(args, argc, argv))
 		exit (0);
-	// init_all(threads, args);
+	init_mutexs(philo, args);
 	
 	
 
