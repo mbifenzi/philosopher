@@ -6,7 +6,7 @@
 /*   By: mbifenzi <mbifenzi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/14 19:12:57 by mbifenzi          #+#    #+#             */
-/*   Updated: 2021/12/03 16:20:09 by mbifenzi         ###   ########.fr       */
+/*   Updated: 2021/12/07 13:03:55 by mbifenzi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int		ft_isdigit(char **argv)
 	int i;
 	int j;
 
-	i = 0;
+	i = 1;
 	while (argv[i])
 	{
 		j = 0;
