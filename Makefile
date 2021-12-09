@@ -6,13 +6,13 @@
 #    By: mbifenzi <mbifenzi@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/11/14 18:15:41 by mbifenzi          #+#    #+#              #
-#    Updated: 2021/12/07 14:49:37 by mbifenzi         ###   ########.fr        #
+#    Updated: 2021/12/09 09:54:26 by mbifenzi         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = philo
 
-SRC =	philo.c helper.c time.c
+SRC =	philo.c helper.c time.c execute.c
 
 all :	$(NAME)
 

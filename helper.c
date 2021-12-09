@@ -6,11 +6,27 @@
 /*   By: mbifenzi <mbifenzi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/14 19:12:57 by mbifenzi          #+#    #+#             */
-/*   Updated: 2021/12/07 13:03:55 by mbifenzi         ###   ########.fr       */
+/*   Updated: 2021/12/09 14:02:45 by mbifenzi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
+
+void	print_stats(t_philo *philo, int instruction, unsigned long long time)
+{
+	if (pthread_mutex_lock(&philo->write))
+		return (1);
+	if (instruction == FORK)
+		printf("%llu %d has taken a fork", time, philo->id);
+	if (instruction == EAT)
+		printf("%llu %d is eating", time, philo->id);
+	if (instruction == SLEEP)
+		printf("%llu %d is sleeping", time, philo->id);
+	if (instruction == THINK)
+		printf("%llu %d is thinking", time, philo->id);
+	pthread_mutex_unlock(&philo->write);
+	return (0);
+}
 
 int		ft_isdigit(char **argv)
 {

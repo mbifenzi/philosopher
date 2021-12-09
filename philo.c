@@ -6,7 +6,7 @@
 /*   By: mbifenzi <mbifenzi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/14 18:12:34 by mbifenzi          #+#    #+#             */
-/*   Updated: 2021/12/07 15:30:30 by mbifenzi         ###   ########.fr       */
+/*   Updated: 2021/12/09 14:54:21 by mbifenzi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ int	error(char *error)
 	write(2, error, ft_strlen(error));
 	return (0);
 }
+
 int	ft_protection(t_args *args, int argc, char **argv)
 {
     if (argc != 5 && argc != 6)
@@ -41,15 +42,14 @@ void	init_mutexs(t_philo *philo, t_args *args)
 	int i;
 
 	i = 0;
-	philo->forks = malloc(sizeof(pthread_mutex_t) * args->philos);
+	philo->fork = malloc(sizeof(pthread_mutex_t) * args->philos);
 	while (i < args->philos)
 	{
-		pthread_mutex_init(&philo->forks[i], NULL);
+		pthread_mutex_init(&philo->fork[i], NULL);
 		i++;
 	}
 	pthread_mutex_init(&philo->write, NULL);
 	pthread_mutex_init(&philo->eat, NULL);
-	
 }
 t_philo		*init_philo(t_philo	*philo, t_args *args)
 {
@@ -60,6 +60,7 @@ t_philo		*init_philo(t_philo	*philo, t_args *args)
 	while (i < args->philos)
 	{
 		philo[i].id = i;
+		philo[i].increment_meal = 0;
 		philo[i].last_meal = time_now();
 		philo[i].start = philo->last_meal;
 		i++;
@@ -67,12 +68,6 @@ t_philo		*init_philo(t_philo	*philo, t_args *args)
 	return(philo);
 }
 
-void	*execute_exe(t_philo *philo)
-{
-	philo = NULL;
-	printf("SSSS\n");
-	return(NULL);
-}
 
 void	execute_threads(t_args *args, t_philo *philo)
 {
@@ -83,13 +78,14 @@ void	execute_threads(t_args *args, t_philo *philo)
 	{
 		pthread_create(&philo[i].thread, NULL, execute_exe, &philo[i]);
 		i++;
-	}	
+	}
+	supervisor();
 }
 
 int main(int argc, char **argv)
 {
 	t_args		*args;
-	t_philo	*philo;
+	t_philo		*philo;
 	
 	args = NULL;
 	philo = NULL;
@@ -100,5 +96,6 @@ int main(int argc, char **argv)
 	philo = init_philo(philo, args); 
 	init_mutexs(philo, args);
 	execute_threads(args, philo);
+	
 	return (0);
 }

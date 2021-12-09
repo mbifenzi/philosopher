@@ -6,7 +6,7 @@
 /*   By: mbifenzi <mbifenzi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/14 18:13:02 by mbifenzi          #+#    #+#             */
-/*   Updated: 2021/12/07 15:22:22 by mbifenzi         ###   ########.fr       */
+/*   Updated: 2021/12/09 15:00:34 by mbifenzi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,12 @@
 #include <pthread.h>
 #include <sys/time.h>
 
+# define FORK 1
+# define EAT 2
+# define SLEEP 3
+# define THINK 4
+# define DIE 5
+
 typedef struct s_args
 {
 				int philos;
@@ -33,14 +39,15 @@ typedef struct s_args
 typedef struct	s_philo
 {
 	pthread_t			thread;
-	pthread_mutex_t		*forks;
+	pthread_mutex_t		*fork;
 	pthread_mutex_t		eat;
 	pthread_mutex_t		write;
-	unsigned long long	timenow;
-	unsigned long long	timepassed;
+	int					eating_index;
 	unsigned long long	last_meal;
 	unsigned long long	start;
 	int					id;
+	int					increment_meal;
+	int					all_philo_meals;
 	t_args				*args;
 	
 }	t_philo;
@@ -53,6 +60,6 @@ int		error(char *error);
 /*time*/
 unsigned long long	time_now(void);
 unsigned long long	time_after(unsigned long long	start);
-
+void				*execute_exe(void *idk);
 
 #endif
