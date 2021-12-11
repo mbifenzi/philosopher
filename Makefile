@@ -6,7 +6,7 @@
 #    By: mbifenzi <mbifenzi@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/11/14 18:15:41 by mbifenzi          #+#    #+#              #
-#    Updated: 2021/12/09 09:54:26 by mbifenzi         ###   ########.fr        #
+#    Updated: 2021/12/10 15:43:35 by mbifenzi         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,7 @@ all :	$(NAME)
 bonus : $(BONUS_NAME)
 		
 $(NAME): $(SRC)
-		@gcc -Wall -Wextra -Werror $(SRC) -o $(NAME) #-fsanitize=address -g
+		@gcc -Wall -Wextra -Werror $(SRC) -o $(NAME) -fsanitize=address -g
 
 clean:
 	@rm -f $(OBJECT)

@@ -6,7 +6,7 @@
 /*   By: mbifenzi <mbifenzi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/07 14:29:19 by mbifenzi          #+#    #+#             */
-/*   Updated: 2021/12/09 14:27:41 by mbifenzi         ###   ########.fr       */
+/*   Updated: 2021/12/10 13:20:03 by mbifenzi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,4 +28,4 @@ unsigned long long	time_now(void)
 	return ((now.tv_sec * 1000) + (now.tv_usec / 1000));
 }
 
-void	sleeping_time()
+// void	sleeping_time()
