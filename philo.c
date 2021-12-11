@@ -6,7 +6,7 @@
 /*   By: mbifenzi <mbifenzi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/14 18:12:34 by mbifenzi          #+#    #+#             */
-/*   Updated: 2021/12/11 12:19:28 by mbifenzi         ###   ########.fr       */
+/*   Updated: 2021/12/11 15:31:48 by mbifenzi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ int	ft_protection(t_args *args, int argc, char **argv)
 	return (1);
 }
 
-void	init_mutexs(t_philo *philo, t_args *args)
+void	init_mutexs(t_args *args)
 {
 	int i;
 
@@ -51,7 +51,7 @@ void	init_mutexs(t_philo *philo, t_args *args)
 		i++;
 	}
 	pthread_mutex_init(&args->write, NULL);
-	pthread_mutex_init(&args->eat, NULL);
+	pthread_mutex_init(&args->is_eating, NULL);
 }
 t_philo		*init_philo(t_philo	*philo, t_args *args)
 {
@@ -99,7 +99,10 @@ int main(int argc, char **argv)
 	if (!ft_protection(args, argc, argv))
 		exit (0);
 	philo = init_philo(philo, args); 
-	init_mutexs(philo, args);
+	init_mutexs(args);
 	execute_threads(args, philo);
+	while (1)
+		;
 	return (0);
 }
+

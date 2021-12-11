@@ -6,7 +6,7 @@
 /*   By: mbifenzi <mbifenzi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/14 18:13:02 by mbifenzi          #+#    #+#             */
-/*   Updated: 2021/12/11 12:17:09 by mbifenzi         ###   ########.fr       */
+/*   Updated: 2021/12/11 13:44:20 by mbifenzi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,14 +35,14 @@ typedef struct s_args
 	int 				sleep;
 	int 				meals;
 	pthread_mutex_t		*fork;
-	pthread_mutex_t		eat;
+	pthread_mutex_t		is_eating;
 	pthread_mutex_t		write;
 }				t_args;
 
 typedef struct	s_philo
 {
 	pthread_t			thread;
-	
+
 	int					eating_index;
 	unsigned long long	last_meal;
 	unsigned long long	start;
@@ -63,7 +63,7 @@ unsigned long long	time_now(void);
 unsigned long long	time_after(unsigned long long	start);
 void				*execute_exe(void *idk);
 /*print*/
-int	print_stats(t_philo *philo, int instruction, unsigned long long time);
+int					print_stats(t_philo *philo, int instruction, unsigned long long time);
 
 
 #endif
