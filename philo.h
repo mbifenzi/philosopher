@@ -6,7 +6,7 @@
 /*   By: mbifenzi <mbifenzi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/14 18:13:02 by mbifenzi          #+#    #+#             */
-/*   Updated: 2021/12/11 13:44:20 by mbifenzi         ###   ########.fr       */
+/*   Updated: 2021/12/13 11:03:20 by mbifenzi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,9 +61,12 @@ int		error(char *error);
 /*time*/
 unsigned long long	time_now(void);
 unsigned long long	time_after(unsigned long long	start);
+void	sleepy(unsigned long long duration);
+/*exe*/
 void				*execute_exe(void *idk);
 /*print*/
 int					print_stats(t_philo *philo, int instruction, unsigned long long time);
-
+/*supervisor*/
+int		supervisor(t_philo *philo);
 
 #endif
