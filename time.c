@@ -6,13 +6,13 @@
 /*   By: mbifenzi <mbifenzi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/07 14:29:19 by mbifenzi          #+#    #+#             */
-/*   Updated: 2021/12/13 14:00:37 by mbifenzi         ###   ########.fr       */
+/*   Updated: 2021/12/14 16:09:13 by mbifenzi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-unsigned long long	time_after(unsigned long long	start)
+unsigned long long	time_after(unsigned long long start)
 {
 	struct timeval	after;
 

@@ -6,11 +6,17 @@
 /*   By: mbifenzi <mbifenzi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/14 19:12:57 by mbifenzi          #+#    #+#             */
-/*   Updated: 2021/12/13 17:38:04 by mbifenzi         ###   ########.fr       */
+/*   Updated: 2021/12/14 15:53:49 by mbifenzi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
+
+int	error(char *error)
+{
+	write(2, error, ft_strlen(error));
+	return (0);
+}
 
 int	print_stats(t_philo *philo, int instruction, unsigned long long time)
 {
@@ -32,10 +38,10 @@ int	print_stats(t_philo *philo, int instruction, unsigned long long time)
 	return (0);
 }
 
-int		ft_isdigit(char **argv)
+int	ft_isdigit(char **argv)
 {
-	int i;
-	int j;
+	int	i;
+	int	j;
 
 	i = 1;
 	while (argv[i])
@@ -44,7 +50,7 @@ int		ft_isdigit(char **argv)
 		while (argv[i][j])
 		{
 			if (argv[i][j] < '0' || argv[i][j] > '9')
-				return(0);
+				return (0);
 			j++;
 		}
 		i++;
@@ -52,7 +58,7 @@ int		ft_isdigit(char **argv)
 	return (1);
 }
 
-long    ft_atoi(const char *str)
+long	ft_atoi(const char *str)
 {
 	int		i;
 	size_t	result;

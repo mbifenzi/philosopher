@@ -6,12 +6,11 @@
 /*   By: mbifenzi <mbifenzi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/09 09:38:23 by mbifenzi          #+#    #+#             */
-/*   Updated: 2021/12/14 14:02:39 by mbifenzi         ###   ########.fr       */
+/*   Updated: 2021/12/14 15:50:24 by mbifenzi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
-
 
 void	ft_eat_steps(t_philo *philo)
 {
@@ -31,8 +30,8 @@ void	ft_eat_steps(t_philo *philo)
 
 void	ft_eat(t_philo *philo)
 {
-	int right;
-	int left;
+	int	right;
+	int	left;
 
 	if (philo->id % 2 == 0)
 		right = (philo->id + 1) % (philo->args->philos);
@@ -53,7 +52,7 @@ void	ft_eat(t_philo *philo)
 
 void	ft_sleep(t_philo *philo)
 {
-	unsigned long long sleep;
+	unsigned long long	sleep;
 
 	sleep = time_now();
 	print_stats(philo, SLEEP, time_after(philo->start));
@@ -67,12 +66,12 @@ void	ft_think(t_philo *philo)
 
 void	*execute_exe(void *idk)
 {
-	t_philo *philo;
-	
+	t_philo	*philo;
+
 	philo = (t_philo *)idk;
 	if (philo == NULL || philo->args->meals == 0)
 		return (NULL);
-	while (1)	
+	while (1)
 	{
 		ft_eat(philo);
 		ft_sleep(philo);

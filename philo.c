@@ -6,24 +6,18 @@
 /*   By: mbifenzi <mbifenzi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/14 18:12:34 by mbifenzi          #+#    #+#             */
-/*   Updated: 2021/12/14 13:50:38 by mbifenzi         ###   ########.fr       */
+/*   Updated: 2021/12/14 15:54:28 by mbifenzi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-int	error(char *error)
-{
-	write(2, error, ft_strlen(error));
-	return (0);
-}
-
 int	ft_protection(t_args *args, int argc, char **argv)
 {
-    if (argc != 5 && argc != 6)
+	if (argc != 5 && argc != 6)
 		return (error("INVALID ARGUMENTS\n"));
 	if (!ft_isdigit(argv))
-		return(error("not a digit or negative something\n"));
+		return (error("not a digit or negative something\n"));
 	args->philos = ft_atoi(argv[1]);
 	args->die = ft_atoi(argv[2]);
 	args->eat = ft_atoi(argv[3]);
@@ -41,7 +35,7 @@ int	ft_protection(t_args *args, int argc, char **argv)
 
 void	init_mutexs(t_args *args)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	args->fork = malloc(sizeof(pthread_mutex_t) * args->philos);
@@ -53,11 +47,12 @@ void	init_mutexs(t_args *args)
 	pthread_mutex_init(&args->write, NULL);
 	pthread_mutex_init(&args->is_eating, NULL);
 }
-t_philo		*init_philo(t_philo	*philo, t_args *args)
+
+t_philo	*init_philo(t_philo	*philo, t_args *args)
 {
-	int i;
+	int	i;
+
 	i = 0;
-	
 	philo = malloc(sizeof(t_philo) * args->philos);
 	while (i < args->philos)
 	{
@@ -69,18 +64,17 @@ t_philo		*init_philo(t_philo	*philo, t_args *args)
 		philo[i].args = args;
 		i++;
 	}
-	return(philo);
+	return (philo);
 }
-
 
 int	execute_threads(t_args *args, t_philo *philo)
 {
-	int i;
-	
+	int	i;
+
 	i = 0;
-	while(i < args->philos)
+	while (i < args->philos)
 	{
-		if(pthread_create(&philo[i].thread, NULL, execute_exe, &philo[i]))
+		if (pthread_create(&philo[i].thread, NULL, execute_exe, &philo[i]))
 			printf("error\n");
 		usleep(100);
 		i++;
@@ -89,7 +83,7 @@ int	execute_threads(t_args *args, t_philo *philo)
 	return (0);
 }
 
-int main(int argc, char **argv)
+int	main(int argc, char **argv)
 {
 	t_args		*args;
 	t_philo		*philo;
@@ -102,9 +96,8 @@ int main(int argc, char **argv)
 		return (1);
 	if (args->meals == 0)
 		return (0);
-	philo = init_philo(philo, args); 
+	philo = init_philo(philo, args);
 	init_mutexs(args);
 	execute_threads(args, philo);
 	return (1);
 }
-
