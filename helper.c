@@ -6,7 +6,7 @@
 /*   By: mbifenzi <mbifenzi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/14 19:12:57 by mbifenzi          #+#    #+#             */
-/*   Updated: 2021/12/13 16:59:19 by mbifenzi         ###   ########.fr       */
+/*   Updated: 2021/12/13 17:38:04 by mbifenzi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,7 @@
 
 int	print_stats(t_philo *philo, int instruction, unsigned long long time)
 {
-	if (pthread_mutex_lock(&philo->args->write))
-		return (1);
+	pthread_mutex_lock(&philo->args->write);
 	if (instruction == FORK)
 		printf("%llu %d has taken a fork\n", time, philo->id + 1);
 	else if (instruction == EAT)

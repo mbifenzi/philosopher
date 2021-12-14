@@ -6,7 +6,7 @@
 /*   By: mbifenzi <mbifenzi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/09 09:38:23 by mbifenzi          #+#    #+#             */
-/*   Updated: 2021/12/13 16:56:58 by mbifenzi         ###   ########.fr       */
+/*   Updated: 2021/12/14 14:02:39 by mbifenzi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,15 +17,15 @@ void	ft_eat_steps(t_philo *philo)
 {
 	pthread_mutex_lock(&philo->args->is_eating);
 	philo->last_meal = time_now();
+	pthread_mutex_unlock(&philo->args->is_eating);
 	philo->eating_index = 1;
 	print_stats(philo, EAT, time_after(philo->start));
-	pthread_mutex_unlock(&philo->args->is_eating);
 	sleepy(philo->args->eat + philo->last_meal);
 	pthread_mutex_lock(&philo->args->is_eating);
 	philo->eating_index = 0;
 	philo->increment_meal++;
 	if (philo->increment_meal == philo->args->meals)
-		philo->all_philo_meals++;
+		philo->args->all_philo_meals++;
 	pthread_mutex_unlock(&philo->args->is_eating);
 }
 
@@ -33,9 +33,6 @@ void	ft_eat(t_philo *philo)
 {
 	int right;
 	int left;
-	
-	// right = (philo->id + 1) % philo->args->philos;
-	// left = philo->id;
 
 	if (philo->id % 2 == 0)
 		right = (philo->id + 1) % (philo->args->philos);
@@ -50,8 +47,8 @@ void	ft_eat(t_philo *philo)
 	pthread_mutex_lock(&philo->args->fork[right]);
 	print_stats(philo, FORK, time_after(philo->start));
 	ft_eat_steps(philo);
-	pthread_mutex_unlock(&philo->args->fork[right]);
 	pthread_mutex_unlock(&philo->args->fork[left]);
+	pthread_mutex_unlock(&philo->args->fork[right]);
 }
 
 void	ft_sleep(t_philo *philo)

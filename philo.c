@@ -6,7 +6,7 @@
 /*   By: mbifenzi <mbifenzi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/14 18:12:34 by mbifenzi          #+#    #+#             */
-/*   Updated: 2021/12/13 16:57:57 by mbifenzi         ###   ########.fr       */
+/*   Updated: 2021/12/14 13:50:38 by mbifenzi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ int	ft_protection(t_args *args, int argc, char **argv)
 		if (args->meals < 0)
 			return (error("negative something\n"));
 	}
+	args->all_philo_meals = 0;
 	return (1);
 }
 
@@ -79,13 +80,6 @@ int	execute_threads(t_args *args, t_philo *philo)
 	i = 0;
 	while(i < args->philos)
 	{
-		// if (args->philos == 1)
-		// {
-		// 	sleepy(args->die + time_after(philo->start));
-		// 	printf("==== %llu\n", args->die + time_after(philo->start));
-		// 	print_stats(philo, DIE, time_after(philo->start));
-		// 	return (1);
-		// }
 		if(pthread_create(&philo[i].thread, NULL, execute_exe, &philo[i]))
 			printf("error\n");
 		usleep(100);

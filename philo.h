@@ -6,7 +6,7 @@
 /*   By: mbifenzi <mbifenzi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/14 18:13:02 by mbifenzi          #+#    #+#             */
-/*   Updated: 2021/12/13 11:03:20 by mbifenzi         ###   ########.fr       */
+/*   Updated: 2021/12/14 11:19:15 by mbifenzi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ typedef struct s_args
 	pthread_mutex_t		*fork;
 	pthread_mutex_t		is_eating;
 	pthread_mutex_t		write;
+	int					all_philo_meals;
 }				t_args;
 
 typedef struct	s_philo
@@ -48,7 +49,6 @@ typedef struct	s_philo
 	unsigned long long	start;
 	int					id;
 	int					increment_meal;
-	int					all_philo_meals;
 	t_args				*args;
 	
 }	t_philo;
